@@ -17,11 +17,10 @@ export class UsersController {
   constructor(@Inject('NATS_SERVICE') private natsClient: ClientProxy) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
+  async create(@Body() createUserDto: CreateUserDto) {
     console.log('Gateway');
-
     console.log(createUserDto);
-    this.natsClient.send({ cmd: 'createUser' }, createUserDto);
+    return this.natsClient.send('createUser', createUserDto);
   }
 
   @Get()

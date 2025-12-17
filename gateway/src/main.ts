@@ -5,9 +5,11 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors();
-  const PORT = process.env.PORT || 3000;
+
+  // Swagger setup
   const config = new DocumentBuilder()
     .setTitle('Microservices')
     .setDescription('Microservices API description')
@@ -15,7 +17,11 @@ async function bootstrap() {
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
+
+  // START ALL microservices (NATS)
   await app.startAllMicroservices();
+  
+  const PORT = process.env.PORT || 3000;
   await app.listen(process.env.PORT ?? 3000, () =>
     console.log(`Running on PORT ${PORT || 3000}`),
   );

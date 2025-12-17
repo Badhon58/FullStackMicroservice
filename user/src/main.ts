@@ -3,19 +3,27 @@ import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
+  // const app = await NestFactory.createMicroservice<MicroserviceOptions>(
+  //   AppModule,
+  //   {
+  //     transport: Transport.NATS,
+  //     options: {
+  //       servers: ['nats://localhost:4222'],
+  //     },
+  //   },
+  // );
+
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     AppModule,
     {
       transport: Transport.NATS,
       options: {
-        servers: ['nats://nats'],
+        servers: ['nats://localhost:4222'],
       },
     },
   );
-  app.listen();
-  console.log('------------------------------------------------');
-  console.log('-----------User Services Is running-------------');
-  console.log('------------------------------------------------');
-  console.log('------------------------------------------------');
+
+  await app.listen();
+  console.log('User Service is running');
 }
 bootstrap();
