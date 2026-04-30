@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Body } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -28,16 +20,16 @@ export class ProductController {
 
   @MessagePattern(MessagePatternMicroservices.productFindByID)
   findOne(@Payload() id: string) {
-    return this.productService.findOne(+id);
+    return this.productService.findOne(id);
   }
 
-  @MessagePattern(MessagePatternMicroservices.productFindByID)
+  @MessagePattern(MessagePatternMicroservices.productUpdateByID)
   update(@Payload() updateProductDto: UpdateProductDto) {
     return this.productService.update(updateProductDto.id, updateProductDto);
   }
 
   @MessagePattern(MessagePatternMicroservices.productRemoveByID)
   remove(@Payload() id: string) {
-    return this.productService.remove(+id);
+    return this.productService.remove(id);
   }
 }

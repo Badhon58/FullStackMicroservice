@@ -1,16 +1,19 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
-  IsEmail,
   IsNotEmpty,
   IsString,
   MaxLength,
   MinLength,
+  IsNumber,
+  IsOptional,
+  IsBoolean,
 } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class CreateProductDto {
   @ApiProperty({
     example: 'Bag',
-    description: 'Unique Bag For the User',
+    description: 'Unique product name',
     minLength: 3,
     maxLength: 30,
   })
@@ -18,11 +21,11 @@ export class CreateProductDto {
   @IsNotEmpty()
   @MinLength(3)
   @MaxLength(30)
-  productName: string;
+  productName!: string;
 
   @ApiProperty({
     example: 'Bag 5 inch',
-    description: 'Display product',
+    description: 'Display name of product',
     minLength: 2,
     maxLength: 50,
   })
@@ -30,12 +33,69 @@ export class CreateProductDto {
   @IsNotEmpty()
   @MinLength(2)
   @MaxLength(50)
-  productdisplayName: string;
+  productDisplayName!: string;
 
   @ApiProperty({
-    example: '1000',
-    description: 'price of that product',
+    example: 1000,
+    description: 'Price of the product',
   })
+  @Type(() => Number)
+  @IsNumber()
+  price!: number;
+
+  @ApiProperty({
+    example: 'High quality leather bag',
+  })
+  @IsString()
   @IsNotEmpty()
-  price: string;
+  description!: string;
+
+  @ApiProperty({
+    example: 'Bags',
+  })
+  @IsString()
+  @IsNotEmpty()
+  category!: string;
+
+  @ApiProperty({
+    example: 'BrandX',
+  })
+  @IsString()
+  brand!: string;
+
+  @ApiProperty({
+    example: 50,
+    description: 'Available stock quantity',
+  })
+  @Type(() => Number)
+  @IsNumber()
+  stock!: number;
+
+
+  @ApiProperty({
+    example: true,
+    description: 'Is product active or not',
+  })
+  @IsBoolean()
+  isActive!: boolean;
+
+  @ApiProperty({
+    example: 10,
+    description: 'Discount percentage',
+    required: false,
+  })
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  discount?: number;
+
+  @ApiProperty({
+    example: 4.5,
+    description: 'Product rating',
+    required: false,
+  })
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  rating?: number;
 }

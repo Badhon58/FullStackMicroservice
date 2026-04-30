@@ -42,6 +42,6 @@ export class ProductController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.natsClient.send(MessagePatternMicroservices.productUpdateByID, +id);
+    return this.natsClient.send(MessagePatternMicroservices.productRemoveByID, id);
   }
 }
