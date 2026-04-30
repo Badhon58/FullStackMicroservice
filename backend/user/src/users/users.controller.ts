@@ -3,12 +3,13 @@ import { MessagePattern, Payload } from '@nestjs/microservices';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { MessagePatternMicroservices } from 'src/lib/MessagePatern.Microservices';
 
 @Controller()
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @MessagePattern('createUser')
+  @MessagePattern(MessagePatternMicroservices.createUser)
   create(@Payload() createUserDto: CreateUserDto) {
     // console.log('Microservices user Section');
     // console.log(createUserDto);
@@ -16,22 +17,22 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  @MessagePattern('findAllUsers')
+  @MessagePattern(MessagePatternMicroservices.userFindAll)
   findAll() {
     return this.usersService.findAll();
   }
 
-  @MessagePattern('findOneUser')
+  @MessagePattern(MessagePatternMicroservices.userFindByID)
   findOne(@Payload() id: number) {
     return this.usersService.findOne(id);
   }
 
-  @MessagePattern('updateUser')
+  @MessagePattern(MessagePatternMicroservices.userUpdateByID)
   update(@Payload() updateUserDto: UpdateUserDto) {
     return this.usersService.update(updateUserDto.id, updateUserDto);
   }
 
-  @MessagePattern('removeUser')
+  @MessagePattern(MessagePatternMicroservices.userRemoveByID)
   remove(@Payload() id: number) {
     return this.usersService.remove(id);
   }

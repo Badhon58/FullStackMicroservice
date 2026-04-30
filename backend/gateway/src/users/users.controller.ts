@@ -11,6 +11,7 @@ import {
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ClientProxy } from '@nestjs/microservices';
+import { MessagePatternMicroservices } from 'src/lib/MessagePatern.Microservices';
 
 @Controller('users')
 export class UsersController {
@@ -18,18 +19,29 @@ export class UsersController {
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
-    return this.natsClient.send('createUser', createUserDto);
+    return this.natsClient.send(MessagePatternMicroservices.createUser, createUserDto);
   }
 
   @Get()
-  findAll() {}
+  findAll() {
+    return this.natsClient.send(MessagePatternMicroservices.userFindAll, {});
+  }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {}
+  findOne(@Param('id') id: string) {
+    return this.natsClient.send(MessagePatternMicroservices.userFindByID, id);
+  }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {}
+  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.natsClient.send(MessagePatternMicroservices.userUpdateByID, {
+      id,
+      updateUserDto,
+    });
+  }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {}
+  remove(@Param('id') id: string) {
+    return this.natsClient.send(MessagePatternMicroservices.userRemoveByID, id);
+  }
 }

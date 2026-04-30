@@ -1,5 +1,5 @@
 {
-  "name": "user",
+  "name": "product",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -24,7 +24,7 @@
     "@nestjs/config": "^4.0.4",
     "@nestjs/core": "^11.0.1",
     "@nestjs/mapped-types": "*",
-    "@nestjs/microservices": "^11.1.9",
+    "@nestjs/microservices": "^11.1.19",
     "@nestjs/mongoose": "^11.0.4",
     "@nestjs/platform-express": "^11.0.1",
     "mongoose": "^9.6.1",
