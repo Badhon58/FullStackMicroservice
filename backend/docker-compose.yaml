@@ -1,0 +1,29 @@
+version: ""
+services:
+  nats:
+    image: nats
+    ports:
+      - 4222:4222
+  gateway:
+    container_name: gateway-container
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    depends_on:
+      - nat
+    env_file:
+      - ./gateway/env
+    ports:
+      - "${GATEWAY_PORT}:${GATEWAY_PORT}"
+    
+  user:
+    container_name: user-container
+    build:
+      context: ./user
+      dockerfile: Dockerfile
+    depends_on:
+      - nat
+    env_file:
+      - ./gateway/env
+    ports:
+      - "${USER_PORT}:${USER_PORT}"
