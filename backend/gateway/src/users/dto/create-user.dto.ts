@@ -1,42 +1,41 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsEmail,
-  IsNotEmpty,
-  IsString,
-  MaxLength,
-  MinLength,
-} from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, IsString, IsNumber } from 'class-validator';
 
 export class CreateUserDto {
-  @ApiProperty({
-    example: 'BadhonBiswas',
-    description: 'Unique username of the user',
-    minLength: 3,
-    maxLength: 30,
-  })
+  @ApiProperty({ example: 'badhon123' })
   @IsString()
   @IsNotEmpty()
-  @MinLength(3)
-  @MaxLength(30)
-  userName: string;
+  userName!: string;
 
-  @ApiProperty({
-    example: 'Badhon Biswas',
-    description: 'Display name of the user',
-    minLength: 2,
-    maxLength: 50,
-  })
+  @ApiProperty({ example: 'Badhon Biswas' })
   @IsString()
-  @IsNotEmpty()
-  @MinLength(2)
-  @MaxLength(50)
-  displayName: string;
+  displayName!: string;
 
-  @ApiProperty({
-    example: 'badhon@example.com',
-    description: 'User email address',
-  })
+  @ApiProperty({ example: 'badhon@gmail.com' })
   @IsEmail()
-  @IsNotEmpty()
-  email: string;
+  email!: string;
+
+  @ApiProperty({ example: 'password123' })
+  @IsString()
+  password!: string;
+
+  @ApiProperty({ example: '017XXXXXXXX' })
+  @IsString()
+  phone!: string;
+
+  @ApiProperty({ example: 25 })
+  @IsNumber()
+  age!: number;
+
+  @ApiProperty({ example: 'Male' })
+  @IsString()
+  gender!: string;
+
+  @ApiProperty({ example: 'Dhaka, Bangladesh' })
+  @IsString()
+  address!: string;
+
+  @ApiProperty({ example: 'Software Engineer' })
+  @IsString()
+  role!: string;
 }

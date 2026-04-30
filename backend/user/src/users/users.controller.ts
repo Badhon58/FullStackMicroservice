@@ -11,9 +11,6 @@ export class UsersController {
 
   @MessagePattern(MessagePatternMicroservices.createUser)
   create(@Payload() createUserDto: CreateUserDto) {
-    // console.log('Microservices user Section');
-    // console.log(createUserDto);
-
     return this.usersService.create(createUserDto);
   }
 
@@ -33,7 +30,7 @@ export class UsersController {
   }
 
   @MessagePattern(MessagePatternMicroservices.userRemoveByID)
-  remove(@Payload() id: number) {
+  remove(@Payload() id: string) {
     return this.usersService.remove(id);
   }
 }
