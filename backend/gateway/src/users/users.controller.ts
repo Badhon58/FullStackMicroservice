@@ -18,7 +18,7 @@ export class UsersController {
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
-    console.log('Gateway');
+    console.log('Gateway Services');
     console.log(createUserDto);
     return this.natsClient.send('createUser', createUserDto);
   }
