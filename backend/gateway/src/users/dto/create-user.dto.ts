@@ -45,3 +45,14 @@ export class CreateUserDto {
   @IsString()
   role!: string;
 }
+
+export class LoginDto {
+  @ApiProperty({ example: '01XXXXXXXXX' })
+  @IsString()
+  @IsNotEmpty()
+  phone!: string;
+  @ApiProperty({ example: 'test123#' })
+  @IsString()
+  @IsNotEmpty()
+  password!: string;
+}

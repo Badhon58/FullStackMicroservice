@@ -17,3 +17,8 @@ export class CreateUserDto {
 
   role!: string;
 }
+
+export class LoginDto {
+  phone!: string;
+  password!: string;
+}

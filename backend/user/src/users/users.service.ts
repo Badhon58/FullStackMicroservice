@@ -3,7 +3,7 @@ import {
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto, LoginDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './entities/user.entity';
@@ -44,6 +44,36 @@ export class UsersService {
       console.error(error);
       throw new InternalServerErrorException('Something went wrong');
     }
+  }
+
+  async login(loginDto: LoginDto) {
+    const { phone, password } = loginDto;
+
+    // find user
+    const user = await this.userModel.findOne({ phone });
+
+    if (!user) {
+      return {
+        message: 'User not found',
+        success: false,
+      };
+    }
+
+    // check password (example)
+    const isMatch = user.password === password;
+
+    if (!isMatch) {
+      return {
+        message: 'Invalid credentials',
+        success: false,
+      };
+    }
+
+    return {
+      message: 'Login successful',
+      data: user,
+      success: true,
+    };
   }
 
   async findAll() {

@@ -1,16 +1,14 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-
 const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Products", path: "/product" },
     { name: "User", path: "/user" },
   ];
-
-  const ref = useRef<any>(null);
-
   const [isScrolled, setIsScrolled] = useState(false);
+  const [login, setLogin] = useState(false);
+  const [userName, setUserName] = useState<string>();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +17,24 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const init = async () => {
+    try {
+      const fullname = localStorage.getItem("name");
+      if (fullname) {
+        setLogin(true);
+        setUserName(fullname);
+      } else {
+        setLogin(false);
+        setUserName(undefined);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    init();
   }, []);
 
   return (
@@ -39,10 +55,17 @@ const Navbar = () => {
             />
           </a>
         ))}
-        <button
-          className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer text-white transition-all`}>
-          Login
-        </button>
+        {login ? (
+          <p className="UserName border px-4 py-1 text-sm rounded-full cursor-pointer text-white">
+            {userName}
+          </p>
+        ) : (
+          <a
+            href="/login"
+            className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer text-white transition-all`}>
+            Login
+          </a>
+        )}
       </div>
     </nav>
   );

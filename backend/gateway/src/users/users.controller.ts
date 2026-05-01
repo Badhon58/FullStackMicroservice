@@ -8,7 +8,7 @@ import {
   Delete,
   Inject,
 } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto, LoginDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ClientProxy } from '@nestjs/microservices';
 import { MessagePatternMicroservices } from 'src/lib/MessagePatern.Microservices';
@@ -19,7 +19,17 @@ export class UsersController {
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
-    return this.natsClient.send(MessagePatternMicroservices.createUser, createUserDto);
+    return this.natsClient.send(
+      MessagePatternMicroservices.createUser,
+      createUserDto,
+    );
+  }
+  @Post('login')
+  async login(@Body() LoginDto: LoginDto) {
+    return this.natsClient.send(
+      MessagePatternMicroservices.loginUser,
+      LoginDto,
+    );
   }
 
   @Get()

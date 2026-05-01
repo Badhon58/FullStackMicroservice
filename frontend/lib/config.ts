@@ -22,6 +22,7 @@ export class EndPoint {
   // User Section
   static CREATE_NEW_USER = "api/users";
   static GET_ALL_USER = "api/users";
+  static LOGIN_USER = "api/users/login";
   static GET_SINGLE_USER = "api/users";
   static UPDATE_SINGLE_USER = "api/users";
   static DELETE_SINGLE_USER = "api/users";

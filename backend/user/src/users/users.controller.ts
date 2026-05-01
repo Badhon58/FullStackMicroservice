@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto, LoginDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { MessagePatternMicroservices } from 'src/lib/MessagePatern.Microservices';
 
@@ -12,6 +12,10 @@ export class UsersController {
   @MessagePattern(MessagePatternMicroservices.createUser)
   create(@Payload() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
+  }
+  @MessagePattern(MessagePatternMicroservices.loginUser)
+  login(@Payload() LoginDto: LoginDto) {
+    return this.usersService.login(LoginDto);
   }
 
   @MessagePattern(MessagePatternMicroservices.userFindAll)
