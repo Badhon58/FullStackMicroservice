@@ -1,4 +1,4 @@
-version: ""
+version: "3.8"
 services:
   nats:
     image: nats
@@ -10,20 +10,31 @@ services:
       context: ./gateway
       dockerfile: Dockerfile
     depends_on:
-      - nat
+      - nats
     env_file:
-      - ./gateway/env
+      - ./gateway/.env
     ports:
-      - "${GATEWAY_PORT}:${GATEWAY_PORT}"
-    
+      - "5000:5000"
+
   user:
     container_name: user-container
     build:
       context: ./user
       dockerfile: Dockerfile
     depends_on:
-      - nat
+      - nats
     env_file:
-      - ./gateway/env
-    ports:
-      - "${USER_PORT}:${USER_PORT}"
+      - ./user/.env
+    # ports:
+    #   - "${USER_PORT}:${USER_PORT}"
+  product:
+    container_name: product-container
+    build:
+      context: ./product
+      dockerfile: Dockerfile
+    depends_on:
+      - nats
+    env_file:
+      - ./user/.env
+    # ports:
+    #   - "${USER_PORT}:${USER_PORT}"
