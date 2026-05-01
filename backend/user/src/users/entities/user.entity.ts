@@ -10,7 +10,7 @@ export class User {
   @Prop({ unique: true }) email!: string;
   @Prop() password!: string;
   @Prop() phone!: string;
-  @Prop() age!: number;
+  @Prop() age!: string;
   @Prop() gender!: string;
   @Prop() address!: string;
   @Prop() role!: string;

@@ -22,7 +22,7 @@ export class UsersService {
       if (existingUser) {
         return {
           message: 'User Already Exists',
-          statusCode: 409,
+          success: false,
         };
       }
       const user = new this.userModel({
@@ -34,6 +34,7 @@ export class UsersService {
       return {
         message: 'User Creation Successful',
         data: userObj,
+        success: true,
       };
     } catch (error: any) {
       if (error.code === 11000) {
@@ -49,8 +50,9 @@ export class UsersService {
     try {
       let data = await this.userModel.find();
       return {
-        message: `All users`,
+        message: `All Users`,
         data: data,
+        success: true,
       };
     } catch (error) {
       console.log(error);
@@ -63,12 +65,13 @@ export class UsersService {
       if (!user) {
         return {
           message: 'User Not Found',
-          response: false,
+          success: false,
         };
       }
       return {
         message: 'User Found',
         data: user,
+        success: true,
       };
     } catch (error) {
       console.log(error);
@@ -83,12 +86,13 @@ export class UsersService {
       if (!user) {
         return {
           message: 'User Not Found',
-          response: false,
+          success: false,
         };
       }
       return {
         message: 'User Update Successful',
         data: user,
+        success: true,
       };
     } catch (error) {
       console.log(error);
@@ -100,7 +104,7 @@ export class UsersService {
     if (!user) {
       return {
         message: 'User Not Found',
-        response: false,
+        success: false,
       };
     }
     return { message: 'User deleted successfully' };

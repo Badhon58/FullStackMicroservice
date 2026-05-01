@@ -30,7 +30,7 @@ export class ProductService {
       const data = await product.save();
 
       return {
-        statusCode: 201,
+        success: true,
         message: 'Product created successfully',
         data,
       };
@@ -85,7 +85,7 @@ export class ProductService {
         id,
         updateProductDto,
         {
-          new: true,
+          returnDocument: 'after',
         },
       );
 
@@ -98,7 +98,6 @@ export class ProductService {
       }
 
       return {
-        statusCode: 200,
         success: true,
         message: 'Product updated successfully',
         data: product,
