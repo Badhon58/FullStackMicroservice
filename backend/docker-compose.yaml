@@ -14,8 +14,13 @@ services:
       - nats
     env_file:
       - ./gateway/.env
+    environment:
+      - DATA_BASE_URL=${DATA_BASE_URL}
+      - ENVIRONMENT=${ENVIRONMENT}
+      - NATS_URL_LIVE=${NATS_URL_LIVE}
+      - NATS_URL_LOCAL=${NATS_URL_LOCAL}
     ports:
-      - "5000:5000"
+      - 5000:5000
 
   user:
     container_name: user-container
@@ -26,8 +31,11 @@ services:
       - nats
     env_file:
       - ./user/.env
-    # ports:
-    #   - "${USER_PORT}:${USER_PORT}"
+    environment:
+      - DATA_BASE_URL=${DATA_BASE_URL}
+      - ENVIRONMENT=${ENVIRONMENT}
+      - NATS_URL_LIVE=${NATS_URL_LIVE}
+      - NATS_URL_LOCAL=${NATS_URL_LOCAL}
   product:
     container_name: product-container
     build:
@@ -37,5 +45,9 @@ services:
       - nats
     env_file:
       - ./user/.env
-    # ports:
-    #   - "${USER_PORT}:${USER_PORT}"
+    environment:
+      - DATA_BASE_URL=${DATA_BASE_URL}
+      - ENVIRONMENT=${ENVIRONMENT}
+      - NATS_URL_LIVE=${NATS_URL_LIVE}
+      - NATS_URL_LOCAL=${NATS_URL_LOCAL}
+
