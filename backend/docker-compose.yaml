@@ -1,17 +1,19 @@
 version: "3.8"
 services:
-  nats:
+  nats_network:
     container_name: nat-gateway
     image: nats
     ports:
       - 4222:4222
+    # networks:
+    #   - nats_network
   gateway:
     container_name: gateway-container
     build:
       context: ./gateway
       dockerfile: Dockerfile
     depends_on:
-      - nats
+      - nats_network
     env_file:
       - ./gateway/.env
     environment:
@@ -21,6 +23,8 @@ services:
       - NATS_URL_LOCAL=${NATS_URL_LOCAL}
     ports:
       - 5000:5000
+    # networks:
+    #   - nats_network
 
   user:
     container_name: user-container
@@ -28,7 +32,7 @@ services:
       context: ./user
       dockerfile: Dockerfile
     depends_on:
-      - nats
+      - nats_network
     env_file:
       - ./user/.env
     environment:
@@ -36,13 +40,15 @@ services:
       - ENVIRONMENT=${ENVIRONMENT}
       - NATS_URL_LIVE=${NATS_URL_LIVE}
       - NATS_URL_LOCAL=${NATS_URL_LOCAL}
+    # networks:
+    #   - nats_network
   product:
     container_name: product-container
     build:
       context: ./product
       dockerfile: Dockerfile
     depends_on:
-      - nats
+      - nats_network
     env_file:
       - ./user/.env
     environment:
@@ -50,4 +56,11 @@ services:
       - ENVIRONMENT=${ENVIRONMENT}
       - NATS_URL_LIVE=${NATS_URL_LIVE}
       - NATS_URL_LOCAL=${NATS_URL_LOCAL}
+    # networks:
+    #   - nats_network
+
+# networks:
+#   nats_network:
+#     name: nats_network
+#     driver: bridge
 
