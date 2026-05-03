@@ -31,8 +31,8 @@ const LoginForm = () => {
       );
       if (response.success) {
         localStorage.setItem("name", response.data.userName);
-        window.location.reload();
         router.push("/");
+        window.location.reload();
       } else {
         setMessage(response.message);
       }
