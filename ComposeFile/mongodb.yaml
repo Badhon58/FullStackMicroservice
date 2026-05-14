@@ -12,4 +12,4 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=badhon118
       - MONGO_INITDB_DATABASE=html
       - TZ=${TZ}
-    restart: ${RESTART_POLICY}
+    restart: always
