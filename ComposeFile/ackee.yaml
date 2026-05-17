@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  ackee:
+    image: electerious/ackee
+    container_name: ackee
+    ports:
+      - "3000:3000"
+    environment:
+      # - WAIT_HOSTS=mongodb:27017
+      - ACKEE_MONGODB=mongodb://XXXX:XXXX@192.168.10.230:27017/html?authSource=admin
+      - ACKEE_USERNAME=admin
+      - ACKEE_PASSWORD=badhon118
+      # - ACKEE_ALLOW_ORIGIN=http://192.168.10.230:3001
+      # - ACKEE_ALLOW_ORIGIN=http://192.168.10.230:3001
+      # - APOLLO_REQUIRE_PREFLIGHT=true
