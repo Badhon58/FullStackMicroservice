@@ -11,3 +11,5 @@ ENVIRONMENT=LIVE
 NATS_URL_LOCAL=nats://localhost:4222
 NATS_URL_LIVE=nats://natGateway:4222
 
+
+- Moved to k8s
