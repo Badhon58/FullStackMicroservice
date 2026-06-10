@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend
+      role: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+        role: frontend
+    spec:
+      containers:
+        - name: frontend-pod
+          image: badhon58/myfrontendservices:1.1.1
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "80Mi"
+            limits:
+              cpu: "100m"
+              memory: "100Mi"
