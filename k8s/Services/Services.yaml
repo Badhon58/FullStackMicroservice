@@ -1,0 +1,75 @@
+# ClusterIP Services
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservices-one-service
+spec:
+  selector:
+    app: product
+  ports:
+    - protocol: TCP
+      port: 3000 # From the browser to ingress it will go to the port 3000
+      targetPort: 3000 # From the services it will go to the selector pod port
+
+
+# From browser -> ingress -> services -> pod
+---
+# Multi-Port Services
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-services
+spec:
+  selector:
+    app: mongodb
+  ports:
+    - name: mongodb
+      protocol: TCP
+      port: 27017
+      targetPort: 27017
+    - name: mongodb-exporter
+      protocol: TCP
+      port: 9216
+      targetPort: 9216
+
+---
+# HeadLess Services
+# Client wants to communicate with 1 specific Pod directly
+# Pods want to talk directly with specific Pod
+# So, not randomly Selected
+# Use Case : Stateful Applications, Like Databases: mysql, mongodb, elasticsearch
+# Pod replicas are not identical
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mangodb-services-headless
+spec:
+  clusterIP: none
+  selector:
+    app: mongodb
+  ports:
+    - protocol: TCP
+      port: 27017 # This port is for the inside of that cluster
+      targetPort: 27017 # This port is for the selected pod port
+
+---
+# NodePort Services
+# External traffic has access to fixed port on each Worker node !
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-service-nodeport
+spec:
+  type: NodePort
+  selector:
+    app: microservice-one
+  ports:
+    - protocol: TCP
+      port: 3000 # This port is for inside the cluster
+      targetPort: 3000
+      nodePort: 3008
+
+---
