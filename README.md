@@ -10,13 +10,13 @@ The system is designed to simulate a production-like microservice architecture w
 
 ## Prometheus and Grafana
 
-- [Grafana k8s](./k8s/Monitoring/Radar/grafana1.png)
-- [Grafana k8s](./k8s/Monitoring/Radar/grafana2.png)
+- ![Grafana k8s](./k8s/Monitoring/Radar/grafana1.png)
+- ![Grafana k8s](./k8s/Monitoring/Radar/grafana2.png)
 
 ## Radar Monitoring
 
-- [Radar K8s](./k8s/Monitoring/Radar/radar.png)
-- [Radar K8s](./k8s/Monitoring/Radar/traffic.png)
+- ![Radar K8s](./k8s/Monitoring/Radar/radar.png)
+- ![Radar K8s](./k8s/Monitoring/Radar/traffic.png)
 
 ## 🏗️ High-Level Architecture
 
