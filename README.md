@@ -8,6 +8,16 @@ The system is designed to simulate a production-like microservice architecture w
 
 ## ![Kubernetes Microservices Project Architecture](./archetucture.png)
 
+## Prometheus and Grafana
+
+- [Grafana k8s](./k8s/Monitoring/Radar/grafana1.png)
+- [Grafana k8s](./k8s/Monitoring/Radar/grafana2.png)
+
+## Radar Monitoring
+
+- [Radar K8s](./k8s/Monitoring/Radar/radar.png)
+- [Radar K8s](./k8s/Monitoring/Radar/traffic.png)
+
 ## 🏗️ High-Level Architecture
 
 ```bash
@@ -418,11 +428,6 @@ spec:
    - Collects cluster + pod metrics
    - Grafana dashboards for visualization
    - NodePort access for UI dashboards
-
-- [Grafana k8s](./k8s/Monitoring/Radar/grafana1.png)
-- [Grafana k8s](./k8s/Monitoring/Radar/grafana2.png)
-- [Radar K8s](./k8s/Monitoring/Radar/radar.png)
-- [Radar K8s](./k8s/Monitoring/Radar/traffic.png)
 
 - 🚀 Resume Highlights (IMPORTANT)
 
