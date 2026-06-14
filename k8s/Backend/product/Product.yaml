@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product
+  template:
+    metadata:
+      labels:
+        app: product
+    spec:
+      containers:
+        - name: product
+          image: badhon58/product:latest
+          resources:
+            requests:
+              memory: "120Mi"
+              cpu: "300m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          env:
+            - name: DATA_BASE_URL
+              # value: mongodb://admin:password123@mongodb:27017/mydb?authSource=admin
+              value: mongodb://mongodb:27017/mydb?authSource=admin
+            - name: ENVIRONMENT
+              value: LIVE
+            - name: NATS_URL_LIVE
+              value: nats://nats:4222

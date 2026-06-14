@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: frontend-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: frontend
@@ -16,13 +16,16 @@ spec:
     spec:
       containers:
         - name: frontend-pod
-          image: badhon58/myfrontendservices:1.1.1
+          image: badhon58/frontend:v2
           ports:
             - containerPort: 3000
           resources:
             requests:
-              cpu: "50m"
-              memory: "80Mi"
+              cpu: "300m"
+              memory: "512Mi"
             limits:
-              cpu: "100m"
-              memory: "100Mi"
+              cpu: "500m"
+              memory: "1Gi"
+          env:
+            - name: NEXT_PUBLIC_API_URL
+              value: http://192.168.10.45:32000
