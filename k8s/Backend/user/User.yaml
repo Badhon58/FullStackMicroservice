@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user
+spec:
+  selector:
+    matchLabels:
+      app: user
+  template:
+    metadata:
+      labels:
+        app: user
+    spec:
+      containers:
+        - name: user
+          image: badhon58/user:latest
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "300m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          env:
+            - name: DATA_BASE_URL
+              # value: mongodb://admin:password123@mongodb:27017/mydb?authSource=admin
+              value: mongodb://mongodb:27017/mydb?authSource=admin
+            - name: ENVIRONMENT
+              value: LIVE
+            - name: NATS_URL_LIVE
+              value: nats://nats:4222
