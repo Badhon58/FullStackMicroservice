@@ -18,36 +18,6 @@ The system is designed to simulate a production-like microservice architecture w
 - ![Radar K8s](./k8s/Monitoring/Radar/radar.png)
 - ![Radar K8s](./k8s/Monitoring/Radar/traffic.png)
 
-## 🏗️ High-Level Architecture
-
-```bash
-                          ┌────────────────────────────┐
-                          │        Frontend (Next.js)  │
-                          │ NodePort: 31000            │
-                          └────────────┬───────────────┘
-                                       │
-                                       │ HTTP API
-                                       ▼
-                          ┌────────────────────────────┐
-                          │       API Gateway          │
-                          │ NodePort: 32000            │
-                          └────────────┬───────────────┘
-                                       │
-            ┌──────────────────────────┼──────────────────────────┐
-            │                          │                          │
-            ▼                          ▼                          ▼
- ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
- │  User Service    │     │ Product Service  │     │   MongoDB        │
- │ (Microservice)   │     │ (Microservice)   │     │ Stateful DB      │
- └────────┬─────────┘     └────────┬─────────┘     └────────┬─────────┘
-          │                        │                        │
-          └──────────────┬─────────┴──────────┬────────────┘
-                         ▼                    ▼
-                    ┌────────────────────────────┐
-                    │          NATS              │
-                    │ Messaging Broker (4222)    │
-                    └────────────────────────────┘
-```
 
 ## ☸️ Kubernetes Cluster Setup (Kind)
 
