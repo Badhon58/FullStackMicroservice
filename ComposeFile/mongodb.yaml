@@ -10,6 +10,6 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=badhon118
-      - MONGO_INITDB_DATABASE=html
+      - MONGO_INITDB_DATABASE=template
       - TZ=${TZ}
     restart: always

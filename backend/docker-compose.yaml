@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  nats_network:
+  nats:
     container_name: nat-gateway
     image: nats
     ports:
@@ -17,10 +17,8 @@ services:
     env_file:
       - ./gateway/.env
     environment:
-      - DATA_BASE_URL=${DATA_BASE_URL}
       - ENVIRONMENT=${ENVIRONMENT}
       - NATS_URL_LIVE=${NATS_URL_LIVE}
-      - NATS_URL_LOCAL=${NATS_URL_LOCAL}
     ports:
       - 5000:5000
     # networks:
@@ -39,7 +37,7 @@ services:
       - DATA_BASE_URL=${DATA_BASE_URL}
       - ENVIRONMENT=${ENVIRONMENT}
       - NATS_URL_LIVE=${NATS_URL_LIVE}
-      - NATS_URL_LOCAL=${NATS_URL_LOCAL}
+      # - NATS_URL_LOCAL=${NATS_URL_LOCAL}
     # networks:
     #   - nats_network
   product:
@@ -55,7 +53,7 @@ services:
       - DATA_BASE_URL=${DATA_BASE_URL}
       - ENVIRONMENT=${ENVIRONMENT}
       - NATS_URL_LIVE=${NATS_URL_LIVE}
-      - NATS_URL_LOCAL=${NATS_URL_LOCAL}
+      # - NATS_URL_LOCAL=${NATS_URL_LOCAL}
     # networks:
     #   - nats_network
 
