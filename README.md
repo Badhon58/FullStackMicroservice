@@ -12,7 +12,7 @@ The architecture is designed to showcase modern cloud-native application pattern
 
 After the CI/CD pipeline execution is completed successfully, the application will be accessible at:
 
-**Application URL:** `***`
+**Application URL:** `https://github.com/Badhon58/FullStackMicroservice/tree/main`
 
 ### Dynatrace Verification
 
