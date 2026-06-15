@@ -1,4 +1,19 @@
-- choco install kubernetes-helm
+- install kubernetes-helm
+
+```bash
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+```
+
+- Installing kubectl
+
+```bash
+curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin
+kubectl version --short --client
+```
 
 - Install Kube Prometheus Stack
 
