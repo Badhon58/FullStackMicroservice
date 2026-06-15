@@ -16,9 +16,9 @@ services:
       - nats_network
     env_file:
       - ./gateway/.env
-    environment:
-      - ENVIRONMENT=${ENVIRONMENT}
-      - NATS_URL_LIVE=${NATS_URL_LIVE}
+    # environment:
+    #   - ENVIRONMENT=${ENVIRONMENT}
+    #   - NATS_URL_LIVE=${NATS_URL_LIVE}
     ports:
       - 5000:5000
     # networks:
@@ -33,10 +33,10 @@ services:
       - nats_network
     env_file:
       - ./user/.env
-    environment:
-      - DATA_BASE_URL=${DATA_BASE_URL}
-      - ENVIRONMENT=${ENVIRONMENT}
-      - NATS_URL_LIVE=${NATS_URL_LIVE}
+    # environment:
+    #   - DATA_BASE_URL=${DATA_BASE_URL}
+    #   - ENVIRONMENT=${ENVIRONMENT}
+    #   - NATS_URL_LIVE=${NATS_URL_LIVE}
       # - NATS_URL_LOCAL=${NATS_URL_LOCAL}
     # networks:
     #   - nats_network
@@ -49,10 +49,10 @@ services:
       - nats_network
     env_file:
       - ./user/.env
-    environment:
-      - DATA_BASE_URL=${DATA_BASE_URL}
-      - ENVIRONMENT=${ENVIRONMENT}
-      - NATS_URL_LIVE=${NATS_URL_LIVE}
+    # environment:
+    #   - DATA_BASE_URL=${DATA_BASE_URL}
+    #   - ENVIRONMENT=${ENVIRONMENT}
+    #   - NATS_URL_LIVE=${NATS_URL_LIVE}
       # - NATS_URL_LOCAL=${NATS_URL_LOCAL}
     # networks:
     #   - nats_network
