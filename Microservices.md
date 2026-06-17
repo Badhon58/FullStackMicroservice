@@ -1,6 +1,6 @@
 ### Install Docker and Docker-compose in the ec2
 
-- ![Docker and Docker Compose Installation Shell Code](./docker.sh)
+- [Docker and Docker Compose Installation Shell Code](./docker.sh)
 
 ---
 
