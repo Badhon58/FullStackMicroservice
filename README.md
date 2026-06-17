@@ -23,7 +23,7 @@ Application Repository: https://github.com/Badhon58/FullStackMicroservice/tree/m
   - Port 80 (HTTP)
   - Port 5000 (API Gateway)
 - Allocate storage: 30 GB
-- ![Install or Full Microservices Setup Of the template](./Microservices.md)
+- [Install or Full Microservices Setup Of the template](./Microservices.md)
 
 ### Dynatrace Observability Validation
 
