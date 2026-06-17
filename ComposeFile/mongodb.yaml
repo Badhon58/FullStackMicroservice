@@ -5,11 +5,12 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ${DATA_PATH}/mongodb:/data/db
-      - ${CONFIG_PATH}/mongodb:/etc/mongo
+      - mongodb_data:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=badhon118
       - MONGO_INITDB_DATABASE=html
       - TZ=${TZ}
     restart: always
+volumes:
+  mongodb_data:

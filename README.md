@@ -27,3 +27,9 @@ Once the application is running, perform the following monitoring activities in 
 - Identify performance bottlenecks and service dependencies
 
 This ensures that the deployed application is functioning correctly and all observability components are reporting data to Dynatrace.
+
+---
+
+## Set Up the Microservices Project
+kacaj81543@aratrin.com
+Kacaj81543@aratrin.com
