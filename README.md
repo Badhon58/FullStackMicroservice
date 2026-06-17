@@ -1,35 +1,39 @@
-# 📦 Microservices Architecture with Dynatrace Observability
+# Microservices Architecture with Dynatrace Observability
 
-## 🧭 Overview
+## Overview
 
-This project demonstrates a production-style microservices architecture deployed on an AWS EC2 environment using Docker containers. The platform consists of independently deployable backend services, a frontend application, event-driven communication through NATS messaging, and persistent data storage with MongoDB.
+This project demonstrates a production-grade microservices architecture deployed on AWS EC2 using Docker containers. The system consists of independently deployable backend services, a frontend application, event-driven communication using NATS messaging, and MongoDB for persistent data storage.
 
-The architecture is designed to showcase modern cloud-native application patterns, including service isolation, asynchronous communication, centralized observability, and scalable deployment practices.
+The architecture follows modern cloud-native principles such as service isolation, asynchronous communication, centralized observability, and scalable deployment practices.
 
-## ![Microservices Architecture with Dynatrace Observability](./dynatrace.png)
+![Microservices Architecture](./dynatrace.png)
 
-## 🚀 Deployment & Monitoring
+## Deployment & Monitoring
 
-After the CI/CD pipeline execution is completed successfully, the application will be accessible at:
+After successful CI/CD pipeline execution, the application becomes accessible via:
 
-**Application URL:** `https://github.com/Badhon58/FullStackMicroservice/tree/main`
+Application Repository: https://github.com/Badhon58/FullStackMicroservice/tree/main
 
-### Dynatrace Verification
+## Infrastructure Setup
 
-Once the application is running, perform the following monitoring activities in Dynatrace:
+### EC2 Instance Setup
 
-- Verify service discovery in Smartscape
-- Analyze distributed traces across microservices
-- Monitor infrastructure metrics (CPU, Memory, Network)
-- Review centralized logs
-- Validate Real User Monitoring (RUM) data
-- Execute Synthetic Monitoring checks
-- Identify performance bottlenecks and service dependencies
+- Launch AWS EC2 instance (t3.medium recommended)
+- Configure Security Groups:
+  - Port 80 (HTTP)
+  - Port 5000 (API Gateway)
+- Allocate storage: 30 GB
+- ![Install or Full Microservices Setup Of the template](./Microservices.md)
 
-This ensures that the deployed application is functioning correctly and all observability components are reporting data to Dynatrace.
+### Dynatrace Observability Validation
 
----
+Once deployed, the following monitoring features are verified in Dynatrace:
 
-## Set Up the Microservices Project
-kacaj81543@aratrin.com
-Kacaj81543@aratrin.com
+- Distributed tracing across microservices
+- Service discovery via Smartscape
+- Infrastructure monitoring (CPU, memory, network)
+- Centralized log aggregation
+- Real User Monitoring (RUM)
+- Synthetic monitoring checks
+- Performance bottleneck detection
+- Service dependency mapping
